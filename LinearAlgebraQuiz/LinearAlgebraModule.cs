@@ -225,8 +225,8 @@ public class LinearAlgebraModule : MonoBehaviour {
 
 	private static int[,] RandomNonTrivialJordanForm3x3(int randomscale = 3) {
 		int[,] J = new int[3,3];
-		int l_1 = Random.Range(randomscale, randomscale+1);
-		int l_2 = Random.Range(randomscale, randomscale+1);
+		int l_1 = Random.Range(-randomscale, randomscale+1);
+		int l_2 = Random.Range(-randomscale, randomscale+1);
 		J[0,0] = l_1;
 		J[0,1] = 1;
 		J[1,1] = l_1;
