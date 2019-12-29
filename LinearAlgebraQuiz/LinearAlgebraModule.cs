@@ -198,16 +198,12 @@ public class LinearAlgebraModule : MonoBehaviour {
 
 	private static int[,] RandomInvolutoryMatrix(int randomscale = 7) {
 		int[,] D = new int[3,3];
-		D[0,0] = Random.Range(-1, 2);
-		D[1,1] = Random.Range(-1, 2);
-		D[2,2] = Random.Range(-1, 2);
+		D[0,0] = Random.Range(0, 2) == 0?1:-1;
+		D[1,1] = Random.Range(0, 2) == 0?1:-1;
+		D[2,2] = Random.Range(0, 2) == 0?1:-1;
 		if (D[0,0] == D[1,1] && D[1,1] == D[2,2]) {
 			int q = Random.Range(0, 3);
-			if (D[0,0] == 0) {
-				D[q, q] = 1 - 2*Random.Range(0,2);
-			} else {
-				D[q, q] *= -1;
-			}
+			D[q, q] *= -1;
 		}
 		int[][,] changeOfBasis = RandomIntegerInvertibleMatrix3x3(randomscale);
 		return Multiply(Multiply(changeOfBasis[0], D), changeOfBasis[1]);
