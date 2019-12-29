@@ -432,10 +432,10 @@ public class LinearAlgebraModule : MonoBehaviour {
 	}
 
 	private static int Minor3x3(int[,] mat, int x, int y) {
-		int a = x==0?1:0;
-		int b = x==2?1:2;
-		int c = y==0?1:0;
-		int d = y==2?1:2;
+		int a = y==0?1:0;
+		int b = y==2?1:2;
+		int c = x==0?1:0;
+		int d = x==2?1:2;
 		return mat[c,a] * mat[d,b] - mat[d,a] * mat[c,b];
 	}
 
@@ -722,5 +722,29 @@ public class LinearAlgebraModule : MonoBehaviour {
 			}
 		}
 		return null;
+	}
+
+	//Test debugs to show exactly where am I stupid as hell.
+	public static void TestGenerators() {
+		var mat = RandomDet0Matrix3x3();
+		Debug.Log("Det 0 matrix:"+MatrixToString(mat)+" Determinant:"+Determinant3x3(mat)+" Nullity:"+Nullity3x3(mat));
+		mat = RandomDet1Matrix3x3();
+		Debug.Log("Det 1 matrix:"+MatrixToString(mat)+" Determinant:"+Determinant3x3(mat)+" Nullity:"+Nullity3x3(mat));
+
+		mat = RandomInvolutoryMatrix();
+		Debug.Log("Invol matrix:"+MatrixToString(mat)+" Determinant:"+Determinant3x3(mat));
+		mat = RandomIdempotentMatrix();
+		Debug.Log("Idemp matrix:"+MatrixToString(mat)+" Determinant:"+Determinant3x3(mat));
+
+		mat = RandomDiagonalizableMatrix();
+		Debug.Log("Diago matrix:"+MatrixToString(mat)+" Determinant:"+Determinant3x3(mat));
+		mat = RandomNonDiagonalizableMatrix();
+		Debug.Log("NDiag matrix:"+MatrixToString(mat)+" Determinant:"+Determinant3x3(mat));
+		mat = RandomNonTrivialJordanForm3x3();
+		Debug.Log("Jorda matrix:"+MatrixToString(mat)+" Determinant:"+Determinant3x3(mat));
+
+		var mats = RandomIntegerInvertibleMatrix3x3();
+		Debug.Log("Mat1:"+MatrixToString(mats[0])+" Determinant:"+Determinant3x3(mats[0]));
+		Debug.Log("Mat2:"+MatrixToString(mats[1])+" Determinant:"+Determinant3x3(mats[1]));
 	}
 }
